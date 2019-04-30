@@ -6,11 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 
-  <link rel="stylesheet" href="../../css/index.css">
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/index.css" />
+  <link rel="stylesheet" href="../../css/style.css" />
 </head>
 
 <body>
+  <script src="../../js/authentication.js"></script>
   <div class="navBar">
     <div class="logo">
       <a href="../index.html">
@@ -23,8 +24,9 @@
     <div class="login_form">
       <h1>Librarian Login</h1>
       <form action="branchList.html">
-        <input type="text" placeholder="Enter your username...">
-        <input type="text" placeholder="Enter your password...">
+        <input type="text" id="username" placeholder="Enter your username...">
+        <input type="password" id="password" placeholder="Enter your password...">
+	<div id="errorMessageDiv" class="errorMessage">Invalid username or password.</div>
         <button>Enter</button>
       </form>
     </div>
