@@ -6,11 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 
-  <link rel="stylesheet" href="../../css/index.css">
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/index.css" />
+  <link rel="stylesheet" href="../../css/style.css" />
 </head>
 
 <body>
+  <script src="../../js/authentication.js"></script>
   <div class="navBar">
     <div class="logo">
       <a href="../homepage.html">
@@ -22,9 +23,9 @@
   <div class="login_main">
     <div class="login_form">
       <h1>Admin Login</h1>
-      <form action="dashboard.html">
-        <input type="text" placeholder="Enter your username...">
-        <input type="text" placeholder="Enter your password...">
+      <form action="dashboard.html" onsubmit="return authenticate()">
+        <input type="text" id="username" placeholder="Enter your username...">
+        <input type="password" id="password" placeholder="Enter your password...">
         <button>Enter</button>
       </form>
     </div>
