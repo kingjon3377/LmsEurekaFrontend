@@ -6,7 +6,7 @@ function addNavBar() {
   logo.setAttribute("class", "logo");
 
   var a = document.createElement("a");
-  a.setAttribute("href", "homepage.html");
+  a.setAttribute("href", "index.html");
 
   var img = document.createElement("img");
   img.setAttribute("src", "../assets/logo.png");
