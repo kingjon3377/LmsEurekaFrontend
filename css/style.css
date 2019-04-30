@@ -120,6 +120,9 @@
   padding: 10px;
   font-size: 18px; 
 }
+.errorMessage {
+  display: none;
+}
 
 /*****************LIBRARIAN BRANCHES LIST********************/
 
