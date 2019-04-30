@@ -9,7 +9,7 @@ function addNavBar() {
   a.setAttribute("href", "homepage.html");
 
   var img = document.createElement("img");
-  img.setAttribute("src", "../assets/books.jpg");
+  img.setAttribute("src", "../assets/logo.png");
   img.setAttribute("alt", "book");
 
   //nested div structure
