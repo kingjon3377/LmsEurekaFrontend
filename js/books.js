@@ -38,7 +38,7 @@ function saveBook(book) {
 			buffer.push(simplify(book));
 			found = true;
 		} else {
-			buffer.push(simplify(item);
+			buffer.push(simplify(item));
 		}
 	}
 	if (!found) {
