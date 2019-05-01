@@ -17,6 +17,7 @@
   <script src="../../js/logout.js"></script>
   <script src="../../js/authors.js"></script>
   <script src="../../js/publishers.js"></script>
+  <script src="../../js/books.js"></script>
   <div class="navBar">
     <div class="logo">
       <a href="../index.html">
@@ -44,7 +45,9 @@
       <div class="adminTable">
         <h3>Add New Book</h3>
         <div class="adminAddSpace"></div>
-        <form onSubmit="return validateBook();">
+	<!-- If adding were handled server-side, action should probably be this
+	     page and the server should redirect. -->
+        <form action="books.html" onSubmit="return validateAndAddBook();">
           <div class="form-group row">
             <label for="title" class="col-sm-2 col-form-label">Title</label>
             <div class="col-sm-10">
