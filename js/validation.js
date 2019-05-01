@@ -5,15 +5,19 @@ function validateBook() {
 		document.getElementById("titleError").classList.remove("errorMessage");
 		retval = false;
 	}
-	const author = document.getElementById("bookAuthor").value;
-	// FIXME: Switch to a list of authors rather than freeform input and check that one is chosen.
-	if (author.length > 20) {
+	const author = document.getElementById("bookAuthor");
+	const authorIndex = author.options[author.selectedIndex].value;
+	if (authorIndex && authorIndex > 0) {
+		document.getElementById("authorError").classList.add("errorMessage");
+	} else {
 		document.getElementById("authorError").classList.remove("errorMessage");
 		retval = false;
 	}
-	const publisher = document.getElementById("bookPublisher").value;
-	// FIXME: Switch to a list of publishers rather than freeform input and check that one is chosen.
-	if (publisher.length > 20) {
+	const publisher = document.getElementById("bookPublisher");
+	const publisherIndex = publisher.options[publisher.selectedIndex].value;
+	if (publisherIndex && publisherIndex > 0) {
+		document.getElementById("publisherError").classList.add("errorMessage");
+	} else {
 		document.getElementById("publisherError").classList.remove("errorMessage");
 		retval = false;
 	}
