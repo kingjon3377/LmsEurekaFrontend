@@ -23,14 +23,14 @@
 .navButtons {
   padding-right: 25px;
 }
-.navButtons button {
+.navButtons button, .navButtons a.buttonLink {
   color: white;
   padding: 10px 10px;
   background: none;
   border: none;
   font-size: 20px;
 }
-.navButtons button:hover {
+.navButtons button:hover, .navButtons a.buttonLink {
   background: #1c3266;
 }
 
