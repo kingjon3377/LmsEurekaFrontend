@@ -78,6 +78,22 @@ function validateAndAddBook() {
 		return false;
 	}
 }
+function validateAndUpdateBook() {
+	if (validateBook()) {
+		const urlSearch = new URLSearchParams(document.location.search.substring(1));
+		const authorNode = document.getElementById("bookAuthor");
+		const publisherNode = document.getElementById("bookPublisher");
+		saveBook({
+			title: document.getElementById("bookTitle").value,
+			authId: authorNode.options[authorNode.selectedIndex].value,
+			pubId: publisherNode.options[publisherNode.selectedIndex].value,
+			bookId: urlSearch.get("id")
+		});
+		return true;
+	} else {
+		return false;
+	}
+}
 function deleteBook(book) {
 	const original = getBooks();
 	let buffer = [];
