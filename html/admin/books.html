@@ -92,7 +92,7 @@
         publisherCell.innerHTML = book.publisher.publisherName;
       }
       const actionsCell = row.insertCell(-1);
-      actionsCell.innerHTML = "<a class=\"edit\" href=\"booksEdit.html?id=" + book.bookId + "\" title=\"Edit Book\" data-toggle=\"tooltip\"><i class=\"material-icons\">edit</i></a><a class=\"delete\" href=\"#\" title=\"Delete Book\" data-toggle=\"tooltip\"><i class=\"material-icons\">delete</i></a>";
+      actionsCell.innerHTML = "<a class=\"edit\" href=\"booksEdit.html?id=" + book.bookId + "\" title=\"Edit Book\" data-toggle=\"tooltip\"><i class=\"material-icons\">edit</i></a><a class=\"delete\" href=\"#\" title=\"Delete Book\" data-toggle=\"tooltip\" onclick=\"confirmDeleteBook(" + book.bookId + ")\"><i class=\"material-icons\">delete</i></a>";
     }
   </script>
 </body>

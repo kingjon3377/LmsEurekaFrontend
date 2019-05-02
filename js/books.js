@@ -104,3 +104,20 @@ function deleteBook(book) {
 	}
 	localStorage.setItem("books", JSON.stringify(buffer));
 }
+function confirmDeleteBook(bookId) {
+	const book = getBook(bookId);
+	// FIXME: Show modal dialog asking the user to confirm before actually deleting.
+	if (book) {
+		deleteBook(book);
+		let i = 0;
+		const table = document.getElementById("booksTable");
+		for (row of table.rows) {
+			if (row.cells[0].tagName.toLowerCase() == "th" && row.cells[0].innerText == bookId) {
+				table.deleteRow(i);
+				break;
+			}
+			i++;
+		}
+	}
+	return false;
+}
