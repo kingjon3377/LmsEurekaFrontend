@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  <script src="../../js/validation.js"></script>
   <script src="../../js/logout.js"></script>
   <script src="../../js/authors.js"></script>
   <div class="navBar">
@@ -39,28 +40,28 @@
     </div>
 
     <div class="adminDash_right">
-      <div class="adminTable table-responsive">
-        <div class="table-title">
-          <h3>Authors</h3>
-          <a href="authorAdd.html">
-            <button class="addButton">
-              <i class="material-icons">add</i>
-              Add New
-            </button>
-          </a>
-        </div>
-        
-        <table class="table table-hover table-bordered" id="authorsTable">
-          <thead>
-            <tr>
-              <th scope="col">Author Id</th>
-              <th scope="col">Name</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+      <div class="adminTable">
+        <h3>Edit Author</h3>
+        <div class="adminAddSpace"></div>
+        <!-- If adding were handled server-side, action should probably be this
+             page and the server should redirect. -->
+        <form action="authors.html" onSubmit="return validateAndUpdateAuthor();">
+          <div class="form-group row">
+            <label for="authorName" class="col-sm-2 col-form-label">Author Name</label>
+            <div class="col-sm-10">
+              <input type="text" id="authorName" class="form-control" placeholder="Author Name...">
+            </div>
+          </div>
+	        <div class="form-group row errorMessage" id="tooLongError">Name cannot
+		        be more than 20 characters long.</div>
+          <div class="form-group row errorMessage" id="tooShortError">Author
+            must have a name.</div>
+          <div class="submit_bttns">
+            <a href="./authors.html" class="cancel">Cancel</a>
+            <button class="update">Update Author</button>
+          </div>
+        </form>
+       
       </div>
     </div>
   </div>
@@ -69,17 +70,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script>
-    const tableNode = document.getElementById("authorsTable");
-    for (author of getAuthors()) {
-      const row = tableNode.insertRow(-1);
-      const idCell = document.createElement("th");
-      idCell.innerHTML = author.authorId;
-      row.appendChild(idCell);
-      const nameCell = row.insertCell(-1);
-      nameCell.innerHTML = author.authorName;
-      const actionsCell = row.insertCell(-1);
-      actionsCell.innerHTML = "<a class=\"edit\" href=\"authorEdit.html?id=" + author.authorId + "\" title=\"Edit Author\" data-toggle=\"tooltip\"><i class=\"material-icons\">edit</i></a><a class=\"delete\" href=\"#\" title=\"Delete Author\" data-toggle=\"tooltip\" onclick=\"confirmDeleteAuthor(" + author.authorId + ")\"><i class=\"material-icons\">delete</i></a>";
-    }
+    const urlSearch = new URLSearchParams(document.location.search.substring(1));
+    const currentAuthorId = urlSearch.get("id");
+    const currentAuthor = getAuthor(Number(currentAuthorId));
+    document.getElementById("authorName").value = currentAuthor.authorName;
   </script>
 </body>
 

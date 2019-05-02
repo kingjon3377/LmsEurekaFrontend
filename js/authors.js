@@ -31,6 +31,45 @@ function saveAuthor(author) {
 	}
 	localStorage.setItem("authors", JSON.stringify(buffer));
 }
+function getNextAuthorId() {
+	let highestAuthorId = parseInt(localStorage.getItem("highestAuthorId"), 10);
+	if (highestAuthorId) {
+		localStorage.setItem("highestAuthorId", 1 + highestAuthorId);
+		return highestAuthorId + 1;
+	} else {
+		highestAuthorId = 0;
+		for (author of getAuthors()) {
+			if (author.authorId > highestAuthorId) {
+				highestAuthorId = Number(author.authorId);
+			}
+		}
+		localStorage.setItem("highestAuthorId", highestAuthorId + 1);
+		return highestAuthorId + 1;
+	}
+}
+function validateAndAddAuthor() {
+	if (validateAuthor()) {
+		saveAuthor({
+			authorName: document.getElementById("authorName").value,
+			authorId: getNextAuthorId()
+		});
+		return true;
+	} else {
+		return false;
+	}
+}
+function validateAndUpdateAuthor() {
+	if (validateAuthor()) {
+		const urlSearch = new URLSearchParams(document.location.search.substring(1));
+		saveAuthor({
+			authorName: document.getElementById("authorName").value,
+			authorId: urlSearch.get("id")
+		});
+		return true;
+	} else {
+		return false;
+	}
+}
 function deleteAuthor(author) {
 	const original = getAuthors();
 	let buffer = [];
@@ -40,4 +79,21 @@ function deleteAuthor(author) {
 		}
 	}
 	localStorage.setItem("authors", JSON.stringify(buffer));
+}
+function confirmDeleteAuthor(authorId) {
+	const author = getAuthor(authorId);
+	// FIXME: Show modal dialog asking the user to confirm before actually deleting.
+	if (author) {
+		deleteAuthor(author);
+		let i = 0;
+		const table = document.getElementById("authorsTable");
+		for (row of table.rows) {
+			if (row.cells[0].tagName.toLowerCase() == "th" && row.cells[0].innerText == authorId) {
+				table.deleteRow(i);
+				break;
+			}
+			i++;
+		}
+	}
+	return false;
 }
